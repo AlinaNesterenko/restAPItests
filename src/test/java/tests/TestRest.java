@@ -23,12 +23,12 @@ public class TestRest extends TestBase {
     UserListModel listModel = new UserListModel();
 
     UserListModel response = step("List of users", () ->
-       given(userReqSpec)
-        .when()
-        .get("/users?page=2")
-        .then()
-        .statusCode(200)
-        .extract().as(UserListModel.class));
+        given(userReqSpec)
+            .when()
+            .get("/users?page=2")
+            .then()
+            .statusCode(200)
+            .extract().as(UserListModel.class));
 
     step("Verify result", () ->
         assertAll(
@@ -36,7 +36,7 @@ public class TestRest extends TestBase {
             () -> assertEquals(2, response.getTotal_pages()),
             () -> assertEquals(12, response.getTotal()),
             () -> assertEquals(6, response.getPer_page())
-      ));
+        ));
 
   }
 
@@ -54,8 +54,9 @@ public class TestRest extends TestBase {
             "data.avatar", contains("https://reqres.in/img/faces/7-image.jpg", "https://reqres.in/img/faces/8-image.jpg", "https://reqres.in/img/faces/9-image.jpg", "https://reqres.in/img/faces/10-image.jpg", "https://reqres.in/img/faces/11-image.jpg", "https://reqres.in/img/faces/12-image.jpg")
         );
   }
-@Test
-void delayTest() {
+
+  @Test
+  void delayTest() {
     given()
         .when()
         .get("/users?delay=3")
@@ -84,6 +85,7 @@ void delayTest() {
         .statusCode(200);
 
   }
+
   @Test
   void UpdateTest2() {
     UserDataModel dataModel = new UserDataModel();
