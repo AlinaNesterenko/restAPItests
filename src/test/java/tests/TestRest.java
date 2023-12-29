@@ -13,8 +13,10 @@ import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static specs.userDataSpec.userReqSpec;
-import static specs.userDataSpec.userRespSpec;
+import static specs.UserDataSpec.userReqSpec;
+import static specs.UserDataSpec.userRespSpec;
+import static specs.UserRegistrationSpec.regReqSpec;
+import static specs.UserRegistrationSpec.regRespSpec;
 
 
 public class TestRest extends TestBase {
@@ -139,12 +141,12 @@ public class TestRest extends TestBase {
     userBody.setPassword("pistol");
 
     UserRegModel response = step("Register user", () ->
-        given(userReqSpec)
+        given(regReqSpec)
             .body(userBody)
             .when()
             .post("/register")
             .then()
-            .spec(userRespSpec)
+            .spec(regRespSpec)
             .extract().as(UserRegModel.class));
 
     step("Verify result", () ->
